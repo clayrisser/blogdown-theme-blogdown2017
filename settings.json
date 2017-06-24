@@ -2,7 +2,7 @@
   "title": "Jam's Portfolio",
   "version": "1.0.0",
   "dateFormat": "MMMM D, YYYY",
-  "debug": false,
+  "debug": true,
   "theme": ["some-theme", {
     "pageTransition": "scale-up-animation"
   }],
