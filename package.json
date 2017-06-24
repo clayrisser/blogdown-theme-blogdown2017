@@ -1,5 +1,5 @@
 {
-  "name": "blogdown-theme-blogdown2017",
+  "name": "blogdown2017",
   "version": "0.0.1",
   "description": "Official BlogDown theme for 2017",
   "main": "index.js",
@@ -29,6 +29,7 @@
   "scripts": {
     "start": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run start",
     "clean": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run clean",
+    "copy": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run copy",
     "build": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run build",
     "vulcanize": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run vulcanize",
     "babel": "node ./node_modules/babel-cli/bin/babel-node ./node_modules/do-task/bin/do-task run babel"

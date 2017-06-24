@@ -96,53 +96,58 @@
 
   </template>
   <script>
-    Polymer({
-      is: 'theme-posts',
+    class ThemePosts {
+      beforeRegister() {
+        this.is = 'theme-posts';
 
-      behaviors: [
-        ReduxState,
-        BlogdownPosts,
-        Polymer.NeonAnimationRunnerBehavior
-      ],
-
-      properties: {
-        authors: {
-          type: Object,
-          statePath: 'authors'
-        },
-        settings: {
-          type: Object,
-          statePath: 'settings'
-        },
-        animationConfig: {
-          value: function() {
-            const themeSettings = app.getThemeSettings();
-            return {
-              entry: {
-                name: themeSettings.pageTransition || 'scale-up-animation',
-                node: this
+        this.properties = {
+          authors: {
+            type: Object,
+            statePath: 'authors'
+          },
+          settings: {
+            type: Object,
+            statePath: 'settings'
+          },
+          animationConfig: {
+            value: function() {
+              const themeSettings = app.getThemeSettings();
+              return {
+                entry: {
+                  name: themeSettings.pageTransition || 'scale-up-animation',
+                  node: this
+                }
               }
             }
           }
-        }
-      },
+        };
+      }
 
-      attached: function() {
+      get behaviors() {
+        return [
+          ReduxState,
+          BlogdownPosts,
+          Polymer.NeonAnimationRunnerBehavior
+        ];
+      }
+
+      attached() {
         this.style.display = 'inline-block';
         this.playAnimation('entry');
-      },
+      }
 
-      flexDirection: function(i) {
+      flexDirection(i) {
         return i % 2 === 0 ? '-reverse' : '';
-      },
+      }
 
-      getAuthorDisplayName: function(author) {
+      getAuthorDisplayName(author) {
         return author ? this.authors[author].displayName : '';
-      },
+      }
 
-      getDate: function(date) {
+      getDate(date) {
         return date ? date.format(this.settings.dateFormat) : '';
       }
-    });
+    }
+    Polymer(ThemePosts);
   </script>
 </dom-module>

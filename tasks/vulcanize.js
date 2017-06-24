@@ -8,7 +8,7 @@ const $ = gulpLoadPlugins();
 export default async function vulcanize() {
   await run(babel);
   await new Promise((resolve, reject) => {
-    gulp.src('./.tmp/theme-body.html')
+    gulp.src('./.tmp/theme.html')
       .pipe($.vulcanize({
         stripComments: true,
         inlineCss: true,

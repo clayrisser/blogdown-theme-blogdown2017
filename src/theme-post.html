@@ -86,41 +86,46 @@
 
   </template>
   <script>
-    Polymer({
-      is: 'theme-post',
+    class ThemePost {
+      beforeRegister() {
+        this.is = 'theme-post';
 
-      behaviors: [
-        BlogdownPost,
-        ReduxState,
-        Polymer.NeonAnimationRunnerBehavior
-      ],
-
-      properties: {
-        authors: {
-          type: Object,
-          statePath: 'authors'
-        },
-        settings: {
-          type: Object,
-          statePath: 'settings'
-        },
-        animationConfig: {
-          value: function() {
-            const themeSettings = app.getThemeSettings();
-            return {
-              entry: {
-                name: themeSettings.pageTransition || 'scale-up-animation',
-                node: this
+        this.properties = {
+          authors: {
+            type: Object,
+            statePath: 'authors'
+          },
+          settings: {
+            type: Object,
+            statePath: 'settings'
+          },
+          animationConfig: {
+            value: function() {
+              const themeSettings = app.getThemeSettings();
+              return {
+                entry: {
+                  name: themeSettings.pageTransition || 'scale-up-animation',
+                  node: this
+                }
               }
             }
           }
-        },
-      },
+        };
+      }
 
-      attached: function() {
+      get behaviors() {
+        return [
+          BlogdownPost,
+          ReduxState,
+          Polymer.NeonAnimationRunnerBehavior
+        ];
+      }
+
+      attached() {
         this.style.display = 'inline-block';
         this.playAnimation('entry');
       }
-    });
+    }
+    Polymer(ThemePost);
   </script>
 </dom-module>

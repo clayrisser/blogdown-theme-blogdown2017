@@ -1,7 +1,3 @@
-<link rel="import" href="./theme-page.html">
-<link rel="import" href="./theme-post.html">
-<link rel="import" href="./theme-posts.html">
-
 <dom-module id="theme-body">
   <template>
     <style>
@@ -176,10 +172,6 @@
           narrow: {
             type: Boolean,
             observer: 'narrowChanged'
-          },
-          _minified: {
-            type: Boolean,
-            value: true
           },
           animationConfig: {
             value: function() {

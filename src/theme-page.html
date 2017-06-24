@@ -63,36 +63,41 @@
 
   </template>
   <script>
-    Polymer({
-      is: 'theme-page',
+    class ThemePage {
+      beforeRegister() {
+        this.is = 'theme-page';
 
-      behaviors: [
-        BlogdownPage,
-        Polymer.NeonAnimationRunnerBehavior
-      ],
-
-      properties: {
-        page: {
-          type: Object,
-          value: {}
-        },
-        animationConfig: {
-          value: function() {
-            const themeSettings = app.getThemeSettings();
-            return {
-              entry: {
-                name: themeSettings.pageTransition || 'scale-up-animation',
-                node: this
+        this.properties = {
+          page: {
+            type: Object,
+            value: {}
+          },
+          animationConfig: {
+            value: function() {
+              const themeSettings = app.getThemeSettings();
+              return {
+                entry: {
+                  name: themeSettings.pageTransition || 'scale-up-animation',
+                  node: this
+                }
               }
             }
           }
-        }
-      },
+        };
+      }
 
-      attached: function() {
+      get behaviors() {
+        return [
+          BlogdownPage,
+          Polymer.NeonAnimationRunnerBehavior
+        ];
+      }
+
+      attached() {
         this.style.display = 'inline-block';
         this.playAnimation('entry');
       }
-    });
+    }
+    Polymer(ThemePage);
   </script>
 </dom-module>
