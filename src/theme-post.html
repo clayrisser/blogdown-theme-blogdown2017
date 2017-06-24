@@ -106,9 +106,10 @@
         },
         animationConfig: {
           value: function() {
+            const themeSettings = app.getThemeSettings();
             return {
               entry: {
-                name: 'scale-up-animation',
+                name: themeSettings.pageTransition || 'scale-up-animation',
                 node: this
               }
             }

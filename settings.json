@@ -1,0 +1,31 @@
+{
+  "title": "Jam's Portfolio",
+  "version": "1.0.0",
+  "dateFormat": "MMMM D, YYYY",
+  "debug": false,
+  "theme": ["some-theme", {
+    "pageTransition": "scale-up-animation"
+  }],
+  "style": "default",
+  "permlinkMode": "title",
+  "socialAccounts": {
+    "facebook": "https://www.facebook.com/jamrizzi",
+    "twitter": "https://twitter.com/jamrizzi",
+    "google-plus": "https://plus.google.com/+BenjaminRisserJam",
+    "github": "https://github.com/jamrizzi"
+  },
+  "cacheBusting": "session",
+  "disqusShortname": "jamrizzi",
+  "taxonomies": [
+    {
+      "name": "posts",
+      "singularForm": "post",
+      "disqus": true
+    },
+    {
+      "name": "portfolio",
+      "singularForm": "showcase",
+      "disqus": false
+    }
+  ]
+}
