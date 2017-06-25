@@ -24,6 +24,7 @@
       }
       .meta {
         margin: 20px 5px 5px 5px;
+        min-width: 200px;
       }
       .meta div {
         margin: 0px 5px 5px 5px;
@@ -50,8 +51,8 @@
             <h1>[[post.title]]</h1>
           </div>
           <div class="meta" style="text-align:right;font-size:18px">
-            <div style="font-weight:bold">[[post.date]]</div>
-            <div>[[author.displayName]]</div>
+            <div style="font-weight:bold">[[getDate(post.date)]]</div>
+            <div>[[getAuthorDisplayName(post.author)]]</div>
           </div>
         </div>
       </div>
@@ -63,8 +64,8 @@
             <h1>[[post.title]]</h1>
           </div>
           <div class="meta" style="text-align:right;font-size:18px">
-            <div style="font-weight:bold">[[post.date]]</div>
-            <div>[[post.author.displayName]]</div>
+            <div style="font-weight:bold">[[getDate(post.date)]]</div>
+            <div>[[getAuthorDisplayName(post.author)]]</div>
           </div>
         </div>
       </div>
@@ -124,6 +125,14 @@
       attached() {
         this.style.display = 'inline-block';
         this.playAnimation('entry');
+      }
+
+      getAuthorDisplayName(author) {
+        return author ? this.authors[author].displayName : '';
+      }
+
+      getDate(date) {
+        return date ? date.format(this.settings.dateFormat) : '';
       }
     }
     Polymer(ThemePost);
