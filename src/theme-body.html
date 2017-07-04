@@ -73,6 +73,18 @@
       .menu-item paper-item {
         font-weight: inherit;
       }
+      .toast {
+        cursor: pointer;
+      }
+      #toastError {
+        --paper-toast-background-color: red;
+      }
+      #toastWarn {
+        --paper-toast-background-color: orange;
+      }
+      #toastInfo {
+        --paper-toast-background-color: green;
+      }
     </style>
     <style include="iron-positioning"></style>
 
@@ -129,6 +141,12 @@
       </div>
     </app-toolbar>
 
+    <div class="toast-hide" on-click="hideToast">
+      <paper-toast id="toastInfo" class="toast" text="[[notification.message]]" duration="[[themeSettings.toastDuration]]"></paper-toast>
+      <paper-toast id="toastWarn" class="toast" text="[[notification.message]]" duration="[[themeSettings.toastDuration]]"></paper-toast>
+      <paper-toast id="toastError" class="toast" text="[[notification.message]]" duration="[[themeSettings.toastDuration]]"></paper-toast>
+    </div>
+
   </template>
   <script>
     class ThemeBody {
@@ -156,6 +174,15 @@
             type: Number,
             statePath: 'meta.progress',
             observer: 'progressChanged'
+          },
+          notifications: {
+            type: Array,
+            statePath: 'notifications',
+            observer: 'notificationsChanged'
+          },
+          meta: {
+            type: Object,
+            statePath: 'meta'
           },
           pages: {
             type: [],
@@ -192,24 +219,22 @@
 
       get behaviors() {
         return [
-          ReduxState,
-          BlogdownBody,
-          Polymer.NeonAnimationRunnerBehavior
+          BodyBehavior,
+          Polymer.NeonAnimationRunnerBehavior,
+          ReduxActionsBehavior,
+          ReduxStateBehavior
         ];
       }
 
       ready() {
+        this.set('themeSettings', _.assign({
+          toastDuration: 5000
+        }, app.getThemeSettings()));
         this.set('indeterminateLoading', true);
         this.set('socialAccounts', []);
         this.set('menuItems', []);
         this.loadMenuItems();
         this.loadSocialAccounts();
-      }
-
-      attached() {
-        window.setTimeout(() => {
-
-        }, 1000);
       }
 
       loadMenuItems() {
@@ -242,6 +267,30 @@
 
       narrowChanged() {
         this.dispatch('isNarrow', this.narrow);
+      }
+
+      notificationsChanged() {
+        this.hideToast();
+        if (this.meta && this.meta.appLoaded) {
+          this.set('notification', this.notifications[this.notifications.length - 1]);
+          switch (this.notification.type) {
+            case 'error':
+              this.$.toastError.open();
+              break;
+            case 'warn':
+              this.$.toastWarn.open();
+              break;
+            default:
+              this.$.toastInfo.open();
+              break;
+          }
+        }
+      }
+
+      hideToast() {
+        this.$.toastError.close();
+        this.$.toastWarn.close();
+        this.$.toastInfo.close();
       }
 
       progressChanged() {

@@ -4,7 +4,8 @@
   "dateFormat": "MMMM D, YYYY",
   "debug": true,
   "theme": ["some-theme", {
-    "pageTransition": "scale-up-animation"
+    "pageTransition": "scale-up-animation",
+    "toastDuration": 5000
   }],
   "style": "default",
   "permlinkMode": "title",

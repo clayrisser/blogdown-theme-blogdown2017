@@ -116,9 +116,10 @@
 
       get behaviors() {
         return [
-          BlogdownPost,
-          ReduxState,
-          Polymer.NeonAnimationRunnerBehavior
+          PostBehavior,
+          Polymer.NeonAnimationRunnerBehavior,
+          ReduxActionsBehavior,
+          ReduxStateBehavior
         ];
       }
 
