@@ -249,7 +249,7 @@
       }
 
       loadSocialAccounts() {
-        _.each(this.settings.socialAccounts, (socialAccount, key) => {
+        _.each(this.themeSettings.socialAccounts, (socialAccount, key) => {
           this.push('socialAccounts', {
             type: key,
             url: socialAccount
