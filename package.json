@@ -1,8 +1,8 @@
 {
-  "name": "blogdown2017",
+  "name": "blogdown-theme-blogdown2017",
   "version": "0.0.1",
   "description": "Official BlogDown theme for 2017",
-  "main": "index.js",
+  "main": "./src/theme.html",
   "repository": "https://blogdown.info",
   "author": "jamrizzi",
   "license": "MIT",
