@@ -22,6 +22,10 @@
       .content {
         width: 100%;
       }
+      .comment {
+        width: 100%;
+        margin-top: 20px;
+      }
       .meta {
         margin: 20px 5px 5px 5px;
         min-width: 200px;
@@ -79,13 +83,13 @@
       </div>
     </paper-card>
 
-    <!-- <template is="dom-if" if="[[post.taxonomy.disqus]]"> -->
-    <!-- <paper-card class="content" elevation="3"> -->
-    <!-- <div class="card-content"> -->
-    <!-- <load-module name="disqus" propPost="[[post]]"></load-module> -->
-    <!-- </div> -->
-    <!-- </paper-card> -->
-    <!-- </template> -->
+    <template is="dom-if" if="[[post.taxonomy.comment]]">
+      <paper-card class="comment" elevation="3">
+        <div class="card-content">
+          <blogdown-module name="[[post.taxonomy.comment]]" $post="[[post]]" />
+        </div>
+      </paper-card>
+    </template>
 
   </template>
   <script>
