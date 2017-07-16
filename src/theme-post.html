@@ -25,6 +25,8 @@
       .meta {
         margin: 20px 5px 5px 5px;
         min-width: 200px;
+        text-align:right;
+        font-size:18px;
       }
       .meta div {
         margin: 0px 5px 5px 5px;
@@ -44,14 +46,14 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
 
     <template is="dom-if" if="[[post.featuredImage]]" restamp>
-      <div class="featured-image" style="background-image:url('[[post.featuredImage]]')"></div>
+      <div class="featured-image" style$="background-image:url('[[post.featuredImage]]')"></div>
       <div class="header featured-image-header">
         <div class="layout horizontal justified">
           <div>
             <h1>[[post.title]]</h1>
           </div>
-          <div class="meta" style="text-align:right;font-size:18px">
-            <div style="font-weight:bold">[[getDate(post.date)]]</div>
+          <div class="meta">
+            <div style$="font-weight:bold">[[getDate(post.date)]]</div>
             <div>[[getAuthorDisplayName(post.author)]]</div>
           </div>
         </div>
@@ -63,8 +65,8 @@
           <div>
             <h1>[[post.title]]</h1>
           </div>
-          <div class="meta" style="text-align:right;font-size:18px">
-            <div style="font-weight:bold">[[getDate(post.date)]]</div>
+          <div class="meta" style="">
+            <div style$="font-weight:bold">[[getDate(post.date)]]</div>
             <div>[[getAuthorDisplayName(post.author)]]</div>
           </div>
         </div>

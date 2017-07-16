@@ -91,13 +91,14 @@ gulp.task('clean', () => {
     .pipe($.clean());
 });
 
-gulp.task('serve', async (cb) => {
+gulp.task('serve', ['vulcanize'], async (cb) => {
+  gulp.watch('src/**/*', ['vulcanize']);
   new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('Listening at http://localhost:8081');
     }, 2000);
     childProcess.spawn(`docker run --name some-blogdown --rm -p 8081:8081 \
--v ${path.resolve(__dirname)}/src/:/app/content/themes/${themeName} \
+-v ${path.resolve(__dirname)}/dist/:/app/content/themes/${themeName} \
       thingdown/blogdown:latest`, {
         stdio: 'inherit',
         shell: true

@@ -65,10 +65,10 @@
 
     <template is="dom-repeat" items="[[posts]]" as="post" restamp>
       <paper-card class="post" elevation="3">
-        <div class="card-content" style="flex-direction:row[[flexDirection(index)]]">
+        <div class="card-content" style$="flex-direction:row[[flexDirection(index)]]">
           <template is="dom-if" if="[[post.featuredImage]]">
             <a class="featured-image" href="/[[page.slug]]/[[post.slug]]">
-              <div class="image" style="background-image:url('[[post.featuredImage]]')"></div>
+              <div class="image" style$="background-image:url('[[post.featuredImage]]')"></div>
             </a>
           </template>
           <div class="card-body">
@@ -79,7 +79,7 @@
                 </h2>
               </a>
               <div class="meta">
-                <div style="font-weight:bold">[[getDate(post.date)]]</div>
+                <div style$="font-weight:bold">[[getDate(post.date)]]</div>
                 <div>[[getAuthorDisplayName(post.author)]]</div>
               </div>
             </div>
